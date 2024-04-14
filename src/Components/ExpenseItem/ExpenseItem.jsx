@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import "./ExpenseItem.css";
+import React, { useState } from "react"; 
 
 const ExpenseItem = ({id,date,item,price}) => {  
   const [itemName,setItemName] = useState(item);
   const clickHandler = () =>{
     let updatedItemName = prompt('Enter new Item Name : ');
-    setItemName(updatedItemName);
+    if(updatedItemName != ''){
+      setItemName(updatedItemName);
+    }
   };
   return (
     <div className="bg-gray-700 flex flex-wrap justify-between rounded-md my-3 items-center" id={id}>

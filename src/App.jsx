@@ -1,10 +1,10 @@
 import "./App.css"; 
-import ExpenseItems from "./Pages/ExpenseItems/ExpenseItems";
+import ExpenseItemPage from "./Pages/ExpenseItems/ExpenseItemPage"; 
 
 function App() {
   return (
     <>
-      <ExpenseItems />
+      <ExpenseItemPage />
     </>
   );
 }
