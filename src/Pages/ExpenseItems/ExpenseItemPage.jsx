@@ -1,58 +1,76 @@
-import React, { useState } from "react";
-import ExpenseItem from "../../Components/ExpenseItem/ExpenseItem";
+import React, { useState, useEffect } from "react"; 
 import NewExpenseItem from "../../Components/NewExpenseItem/NewExpenseItem";
 import FilterExpenseItem from "../../Components/FilterExpenseItem/FilterExpenseItem";
+import ExpenseItemList from "../../Components/ExpenseItemList/ExpenseItemList";
 
 const expenseData = [
-  {id: 1, date: new Date().toDateString(), item: "asdfdasfadfdf", price: 100 },
-  {id: 2, date: new Date().toDateString(), item: "gjgdjsdjfgjf", price: 700 },
-  {id: 3, date: new Date().toDateString(), item: "mbmvckrwjabjhg", price: 200 },
+  { id: 1, date: new Date().toDateString(), item: "asdfdasfadfd", price: 100 },
+  { id: 2, date: new Date().toDateString(), item: "gjgdjsdjfgjf", price: 700 },
+  { id: 3, date: new Date().toDateString(), item: "mbmvckrwjabj", price: 200 },
 ];
 
 const ExpenseItemPage = () => {
-
-  const [expenseDataList,setExpenseDataList] = useState(expenseData);
+  const [expenseDataList, setExpenseDataList] = useState(expenseData);
 
   const enteredExpenseData = (newEnteredData) => {
-    // console.log(newEnteredData); 
+    // console.log(newEnteredData);
     let count = expenseData.length;
-    let dateParts = newEnteredData.date.split('-');
+    let dateParts = newEnteredData.date.split("-");
     let formattedDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    let options = { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' };
-    let formattedDateString = formattedDate.toDateString('en-US', options); 
+    let options = {
+      weekday: "short",
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    };
+    let formattedDateString = formattedDate.toDateString("en-US", options);
     const newExpenseData = {
-      id : ++count,
-      ...newEnteredData, 
-      date : formattedDateString
-    }
-    // expenseData.push(newExpenseData);  
-    console.log(expenseData); 
-    setExpenseDataList((prevState)=> {
-      return [newExpenseData,...prevState];
+      id: ++count,
+      ...newEnteredData,
+      date: formattedDateString,
+    };
+    // expenseData.push(newExpenseData);
+    // console.log(newExpenseData);
+    setExpenseDataList((prevState) => {
+      return [newExpenseData, ...prevState];
     });
   };
 
-  const [filterYear,setFilterYear] = useState('2021');
+  const [filterYear, setFilterYear] = useState("2024");
 
-  const changeFilterYear = (onselectYear) =>{
-    setFilterYear((onselectYear));  
+  let filterExpenseDataList;
+  const changeFilterYear = (onselectYear) => {
+    // console.log(onselectYear);
+    setFilterYear(onselectYear);
+    filterExpenseDataList = Object.values(expenseData).filter(
+      (item) => new Date(item.date).getFullYear() === parseInt(onselectYear)
+    );
+    setExpenseDataList(filterExpenseDataList);
   };
+
+  // const filterExpenseDataList = expenseData.filter((expense) => { 
+  //   return new Date(expense.date).getFullYear() === parseInt(filterYear);
+  // });
+
+  useEffect(() => {
+    let ignore = false;
+    if (!ignore) changeFilterYear(filterYear);
+    return () => {
+      ignore = true;
+    };
+  }, []); 
+
   return (
     <div className="bg-gray-900 w-screen h-screen flex justify-center items-center flex-col">
       <div className="bg-gray-300 w-2/3 p-5 rounded-md m-2">
-        <NewExpenseItem onEnteredExpenseData={enteredExpenseData}/>
+        <NewExpenseItem onEnteredExpenseData={enteredExpenseData} />
       </div>
       <div className="bg-gray-800 w-2/3 p-5 rounded-md m-2">
-        <FilterExpenseItem selected={filterYear} onChangeFilterYear={changeFilterYear}/>
-        {expenseDataList.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            id={expense.id}
-            date={expense.date}
-            item={expense.item}
-            price={expense.price}
-          />
-        ))}
+        <FilterExpenseItem
+          selected={filterYear}
+          onChangeFilterYear={changeFilterYear}
+        />
+        <ExpenseItemList items={expenseDataList}/>
       </div>
     </div>
   );
