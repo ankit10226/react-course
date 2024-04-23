@@ -48,7 +48,10 @@ const NewExpenseItem = ({onEnteredExpenseData}) => {
 
     const submitFormHandler = (e) =>{
         e.preventDefault(); 
-        
+        if(enteredDate == '' || enteredTitle == '' || enteredPrice == '' ){
+            alert('Value can not be null');
+            return false;
+        }
         const newEnteredData = {
             date:enteredDate,
             item:enteredTitle,
