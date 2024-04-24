@@ -2,10 +2,14 @@ import React, { useState } from "react";
 
 const ExpenseItem = ({id,date,item,price}) => {  
   const [itemName,setItemName] = useState(item);
-  const clickHandler = (e) =>{ 
-    let updatedItemName = prompt('Enter new Item Name : '); 
-    if(updatedItemName != ''){ 
-      setItemName(updatedItemName);
+  const clickHandler = (e) =>{  
+    let updatedItemName = prompt('Enter new Item Name : ');  
+    if (updatedItemName !== null) {
+      if(updatedItemName != ''){ 
+        setItemName(updatedItemName);
+      }else{ 
+        return false;
+      }
     }else{
       return false;
     }

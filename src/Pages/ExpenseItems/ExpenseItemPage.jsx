@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"; 
-import NewExpenseItem from "../../Components/NewExpenseItem/NewExpenseItem";
-import FilterExpenseItem from "../../Components/FilterExpenseItem/FilterExpenseItem";
-import ExpenseItemList from "../../Components/ExpenseItemList/ExpenseItemList";
-import Card from "../../Components/Card/Card";
+import NewExpenseItem from "../../Components/ExpenseItemComponents/NewExpenseItem/NewExpenseItem";
+import ExpenseItemList from "../../Components/ExpenseItemComponents/ExpenseItemList/ExpenseItemList";
+import FilterExpenseItem from "../../Components/ExpenseItemComponents/FilterExpenseItem/FilterExpenseItem";
+import Card from "../../Components/ExpenseItemComponents/Card/Card"; 
 
 const expenseData = [
   { id: 1, date: new Date().toDateString(), item: "asdfdasfadfd", price: 100 },
@@ -59,8 +59,7 @@ const ExpenseItemPage = () => {
   //   return () => {
   //     ignore = true;
   //   };
-  // }, []); 
-  console.log(expenseDataList);
+  // }, []);  
   return (
     <div className="bg-gray-900 w-screen h-screen flex justify-center items-center flex-col">
       <div className="bg-gray-300 w-2/3 p-3 rounded-md m-1">
