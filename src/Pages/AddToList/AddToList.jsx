@@ -23,12 +23,12 @@ const AddToList = () => {
     }
     return (
         <div className="font-sans w-screen h-screen flex justify-center items-center flex-col">
-        <div className="shadow-lg border w-2/3 p-3 rounded-md m-1">
-            <AddNewItem getAddedItem={getAddedItem} />
-        </div>
-        <div className="shadow-lg border w-2/3 p-3 rounded-md m-1">            
-            <AddedItems addedItemList={addedItemList} getDeletingId={getDeletingId}/>
-        </div>
+            <div className="shadow-lg border w-2/3 p-3 rounded-md m-1">
+                <AddNewItem getAddedItem={getAddedItem} />
+            </div>
+            <div className="shadow-lg border w-2/3 p-3 rounded-md m-1">            
+                <AddedItems addedItemList={addedItemList} getDeletingId={getDeletingId}/>
+            </div>
         </div>
     );
 };
