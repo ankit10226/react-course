@@ -46,7 +46,7 @@ const Loginpage = ({getLoginData}) => {
   return (
     <>
      <Navbar title={'This is Login Page'} page={'login'}/> 
-     <div className="font-sans w-screen h-screen flex justify-center items-center flex-col font-semibold text-slate-600">
+     <div className="font-sans w-full h-full flex justify-center items-center flex-col font-semibold text-slate-600">
         <div className='shadow-lg border w-1/3 p-3 rounded-md m-1'>
           <form onSubmit={submitFormHandler}> 
               {/* <p className={`text-red-400 ${errorField}`}>Fill Both Username & Password</p> */}
