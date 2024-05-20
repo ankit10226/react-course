@@ -1,4 +1,5 @@
 import React, { useState } from 'react' 
+import { createPortal } from 'react-dom';
 import Button from '../../UI/Button/Button';
 import ErrorModal from '../../UI/ErrorModal/ErrorModal';
 
@@ -42,9 +43,15 @@ const AddUserInput = ({getFormData}) => {
         getFormData(formData);  
         setFormData(initalFormData);
     }
+    const setHideModal = (data) =>{
+        setModalData(prevState =>({
+            ...prevState,
+            showModal:data
+        })); 
+    }
     return ( 
         <>
-            <ErrorModal showModal={modalData.showModal} title={modalData.title} message={modalData.message} />
+            {modalData.showModal && createPortal(<ErrorModal title={modalData.title} message={modalData.message} hideModal={setHideModal}/> , document.getElementById('modalShowContainer'))}
             <form onSubmit={submitFormHandler}>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
