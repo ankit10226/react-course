@@ -3,6 +3,7 @@ import AddToList from "./Pages/AddToList/AddToList";
 import AddUser from "./Pages/AddUser/AddUser";
 import ExpenseItemPage from "./Pages/ExpenseItems/ExpenseItemPage"; 
 import InvestmentCalculator from "./Pages/InvestmentCalculator/InvestmentCalculator";
+import UseReducer from "./Pages/UseReducer/UseReducer";
 import UserLogin from "./Pages/UserLogin/UserLogin";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       {/* <InvestmentCalculator /> */}
       {/* <AddUser /> */}
       <UserLogin />
+      {/* <UseReducer /> */}
     </>
   );
 }
