@@ -5,6 +5,7 @@ import ExpenseItemPage from "./Pages/ExpenseItems/ExpenseItemPage";
 import InvestmentCalculator from "./Pages/InvestmentCalculator/InvestmentCalculator";
 import UseReducer from "./Pages/UseReducer/UseReducer";
 import UserLogin from "./Pages/UserLogin/UserLogin";
+import { AuthContextProvider } from "./Store/auth-context";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       {/* <AddToList /> */}
       {/* <InvestmentCalculator /> */}
       {/* <AddUser /> */}
-      <UserLogin />
+      <AuthContextProvider>
+        <UserLogin />
+      </AuthContextProvider>
       {/* <UseReducer /> */}
     </>
   );

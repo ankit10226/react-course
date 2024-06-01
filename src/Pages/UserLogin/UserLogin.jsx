@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext} from 'react'
 import Loginpage from '../../Components/UserLoginComponents/LoginPage/Loginpage'
-import HomePage from '../../Components/UserLoginComponents/HomePage/HomePage'
+import HomePage from '../../Components/UserLoginComponents/HomePage/HomePage' 
+import AuthContext from '../../Store/auth-context'
 
 const UserLogin = () => {  
-  const [issLoggedIn, setIssLoggedIn] = useState(false);
-  const loginData = (loginStatus) =>{
-    if(!loginStatus){
-      localStorage.removeItem('issLoggedIn');
-    }
-    setIssLoggedIn(loginStatus);
-    // console.log(loginStatus);
-  }
-  useEffect(()=>{
-    let storedLoginData = localStorage.getItem('issLoggedIn'); 
-    storedLoginData === '1' && setIssLoggedIn(true);
-  },[]);
+  const ctx = useContext(AuthContext);
   return (
     <>
-      {!issLoggedIn && <Loginpage getLoginData={loginData}/>}
-      {issLoggedIn && <HomePage getLoginData={loginData}/>}
+      {!ctx.isLoggedIn && <Loginpage/>}
+      {ctx.isLoggedIn && <HomePage/>}
     </>
   )
 }
