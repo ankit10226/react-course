@@ -18,6 +18,7 @@ export const AuthContextProvider = (props) =>{
       storedLoginData === '1' && setIsLoggedIn(true);
     },[]);
 
+    
     return (
         <AuthContext.Provider value={{isLoggedIn:isLoggedIn,onLog:logHandler}}>{props.children}</AuthContext.Provider>
     )
